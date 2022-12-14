@@ -1,16 +1,19 @@
 # app.py
+# check localhost:port/api/ui
 
 from flask import render_template
-import connexion
+import config     # first import runs the initialisation code
+from models import Person
 
 # **********************************************
-app = connexion.App(__name__, specification_dir="./")
-app.add_api("swagger.yml")
+app = config.connex_app
+app.add_api(config.basedir / "swagger.yml")
 
 # **********************************************
 @app.route("/")
 def home():
-    return render_template("home.html") # home.html is in ./templates dir
+    allpeople = Person.query.all()
+    return render_template("home.html", people=allpeople)
 
 # **********************************************
 if __name__ == "__main__":

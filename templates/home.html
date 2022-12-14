@@ -1,4 +1,5 @@
 <!-- templates/home.html -->
+<!-- parameter: people -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,12 @@
 </head>
 <body>
     <h1>
-        Hello, World - EZ!
+        Hello, People!
     </h1>
+    <ul>
+        {% for person in people %}
+        <li>{{ person.fname }} {{ person.lname }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
